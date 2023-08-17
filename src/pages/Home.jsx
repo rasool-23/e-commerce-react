@@ -45,14 +45,14 @@ const Home = () => {
     <Helmet title={"Home"}>
       <section className="hero bg-[#d6e5fb]">
         <div className="container">
-          <div className="grid grid-cols-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2">
             <div className="col">
-              <div className="pt-[45px]">
+              <div className="pt-0 sm:pt-[45px]">
                 <p className="subtitle">Treding product in {year}</p>
-                <h2 className="text-[#0a1d37] text-[2.5rem] font-semibold my-5 mx-0">
+                <h2 className="text-[#0a1d37] text-[1.6rem] sm:text-[2rem] md:text-[2.5rem] font-semibold my-5 mx-0">
                   Make Your Interior More Minimlistic & Modern
                 </h2>
-                <p className="text-[#0a1d37] leading-[28px]">
+                <p className="text-[#0a1d37] leading-[28px] text-[.9rem] md:text-[1.1]">
                   Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                   Natus, enim quis assumenda omnis quasi voluptates cum sit
                   fugiat architecto deleniti mollitia facere error labore
@@ -60,7 +60,7 @@ const Home = () => {
                 </p>
                 <motion.button
                   whileTap={{ scale: 1.2 }}
-                  className="outline-none py-2 px-5 rounded-md bg-[#0a1d37] text-white text-4 cursor-pointer mt-[40px] font-medium">
+                  className="outline-none py-2 px-5 rounded-md bg-[#0a1d37] text-white text-[.9rem] md:text-4 cursor-pointer mt-[40px] font-medium">
                   <Link to="/shop" className="hover:text-white">
                     SHOP NOW
                   </Link>
@@ -80,7 +80,7 @@ const Home = () => {
         <div className="container">
           <div className="row">
             <div className="text-center">
-              <h2 className="sect it text-[# ] font-semibold">
+              <h2 className="sect it text-[1.4rem] md:text-[2rem] font-semibold">
                 Trending Products
               </h2>
             </div>
@@ -93,7 +93,9 @@ const Home = () => {
         <div className="container">
           <div className="row">
             <div className="text-center">
-              <h2 className="sect it text-[# ] font-semibold">Best Salec</h2>
+              <h2 className="sect it text-[# ] font-semibold text-[1.4rem]">
+                Best Salec
+              </h2>
             </div>
             <ProductList data={bestSalesProducts} />
           </div>
@@ -102,20 +104,26 @@ const Home = () => {
 
       <section className="timer__count bg-[#0a1d37] h-[300px]">
         <div className="container">
-          <div className="grid grid-cols-2">
-            <div>
-              <div>
-                <h4 className="text-white text-xl mb-3">Limited Offers</h4>
-                <h3 className="text-white text-2xl mb-3">Quality Armchair</h3>
+          <div className="sm:grid sm:grid-cols-2">
+            <div className="">
+              <div className="text-center">
+                <h4 className="text-white text-base md:text-xl mb-3 ">
+                  Limited Offers
+                </h4>
+                <h3 className="text-white text-base md:text-2xl mb-3">
+                  Quality Armchair
+                </h3>
               </div>
               <Clock />
-              <motion.button
-                whileTap={{ scale: 1.2 }}
-                className="outline-none py-2 px-5 rounded-md bg-[#fff] text-0a1d37 text-base cursor-pointer mt-[40px] font-semibold">
-                <Link to="/shop">Visit Store</Link>
-              </motion.button>
+              <div className="flex justify-center md:block">
+                <motion.button
+                  whileTap={{ scale: 1.2 }}
+                  className="outline-none py-2 px-5 rounded-md bg-[#fff] text-0a1d37 text-base cursor-pointer mt-[40px] font-semibold text-center">
+                  <Link to="/shop">Visit Store</Link>
+                </motion.button>
+              </div>
             </div>
-            <div className="flex justify-end">
+            <div className="hidden sm:flex justify-end">
               <img
                 src={counterImg}
                 alt="img"
@@ -129,7 +137,9 @@ const Home = () => {
         <div className="container">
           <div className="row">
             <div className="text-center mb-5">
-              <h2 className="sect it text-[# ] font-semibold">New Arrivals</h2>
+              <h2 className="sect it text-[# ] font-semibold text-[1.4rem]">
+                New Arrivals
+              </h2>
             </div>
             <ProductList data={mobileProducts} />
             {/* <ProductList data={wirelessProducts} /> */}
@@ -140,7 +150,7 @@ const Home = () => {
         <div className="container">
           <div className="row">
             <div className="text-center mb-5">
-              <h2 className="sect it text-[# ] font-semibold">
+              <h2 className="sect it text-[# ] font-semibold text-[1.4rem]">
                 Popular in Category
               </h2>
             </div>

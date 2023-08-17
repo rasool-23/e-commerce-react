@@ -18,7 +18,7 @@ const Services = () => {
                   {/* {data.icon} */}
                 </div>
                 <div className="">
-                  <h3 className="text-[1.1rem] font-semibold text-[#0a1d37] ">
+                  <h3 className="text-[.9rem] md:text-[1.1rem] font-semibold text-[#0a1d37] ">
                     {data.title}
                   </h3>
                   <p className="text-[.9rem] font-semibold text-[#222] mt-1">

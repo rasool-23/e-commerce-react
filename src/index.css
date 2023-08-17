@@ -26,7 +26,8 @@
 
 .container {
   margin: 0 auto;
-  max-width: 1140px;
+  max-width: 1200px;
+  padding: 0 20px;
 }
 
 .active {
@@ -85,4 +86,11 @@ section {
   z-index: 999;
   box-shadow: 3px 3px 8px -3px #ddd;
   background: #fff;
+}
+
+.active-menu {
+  display: block;
+}
+.mobile-menu {
+  display: block;
 }

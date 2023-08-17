@@ -35,32 +35,32 @@ const Clock = () => {
   });
 
   return (
-    <div className="flex items-center gap-3">
-      <div className="cdata flex items-center gap-3">
+    <div className="flex items-center justify-center lg:justify-start gap-3">
+      <div className="cdata  flex items-center gap-3">
         <div className="text-center">
-          <h1 className="text-white text-xl mb-2">{days}</h1>
-          <h5 className="text-white text-xl">Days</h5>
+          <h1 className="text-white text-[1rem] md:text-xl  mb-2">{days}</h1>
+          <h5 className="text-white text-[.9rem] md:text-xl">Days</h5>
         </div>
         <span className="text-white text-xl">:</span>
       </div>
-      <div className="cdata flex items-center gap-3">
+      <div className="cdata  flex items-center gap-3">
         <div className="text-center">
-          <h1 className="text-white text-xl mb-2">{hours}</h1>
-          <h5 className="text-white text-xl">Hours</h5>
+          <h1 className="text-white text-[1rem] md:text-xl  mb-2">{hours}</h1>
+          <h5 className="text-white  text-[.9rem] md:text-xl">Hours</h5>
         </div>
         <span className="text-white text-xl">:</span>
       </div>
-      <div className="cdata flex items-center gap-3">
+      <div className="cdata  flex items-center gap-3">
         <div className="text-center">
-          <h1 className="text-white text-xl mb-2">{minutes}</h1>
-          <h5 className="text-white text-xl">Minutes</h5>
+          <h1 className="text-white text-[1rem] md:text-xl  mb-2">{minutes}</h1>
+          <h5 className="text-white text-[.9rem] md:text-xl">Minutes</h5>
         </div>
         <span className="text-white text-xl">:</span>
       </div>
-      <div className="cdata flex items-center gap-3">
+      <div className="cdata  flex items-center gap-3">
         <div className="text-center">
-          <h1 className="text-white text-xl mb-2">{seconds}</h1>
-          <h5 className="text-white text-xl">Seconds</h5>
+          <h1 className="text-white text-[1rem] md:text-xl  mb-2">{seconds}</h1>
+          <h5 className="text-white text-[.9rem] md:text-xl">Seconds</h5>
         </div>
       </div>
     </div>
