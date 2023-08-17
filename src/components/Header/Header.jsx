@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/images/eco-logo.png";
 import userIcon from "../../assets/images/user-icon.png";
 import { BsBag, BsHeart } from "react-icons/bs";
@@ -25,8 +25,10 @@ const Header = () => {
       <div className="container">
         <div className="nav-wrapper flex items-center justify-between text-[#0a1d37]">
           <div className="flex items-center gap-2">
-            <img src={logo} alt="logo" className="w-6 h-6" />
-            <h1 className="text-[1.2rem] font-bold">Multimart</h1>
+            <Link to="/home">
+              <img src={logo} alt="logo" className="w-6 h-6" />
+              <h1 className="text-[1.2rem] font-bold">Multimart</h1>
+            </Link>
           </div>
           <nav className="flex items-center justify-between">
             <ul className="menu flex items-center gap-[2.7rem] ">
