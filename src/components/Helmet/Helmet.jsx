@@ -1,5 +1,5 @@
 const Helmet = (props) => {
-  document.title = "Maltimart -" + props.title;
+  document.title = "Maltimart - " + props.title;
   return <div className="w-full">{props.children}</div>;
 };
 

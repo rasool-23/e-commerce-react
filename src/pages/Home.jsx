@@ -2,6 +2,7 @@ import Helmet from "../components/Helmet/Helmet";
 import heroImg from "../assets/images/hero-img.png";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import Services from "../services/Services";
 
 const Home = () => {
   const year = new Date().getFullYear();
@@ -10,7 +11,7 @@ const Home = () => {
       <section className="hero bg-[#d6e5fb]">
         <div className="container">
           <div className="grid grid-cols-2">
-            <div className="col ">
+            <div className="col">
               <div className="pt-[45px]">
                 <p className="subtitle">Treding product in {year}</p>
                 <h2 className="text-[#0a1d37] text-[2.5rem] font-semibold my-5 mx-0">
@@ -39,6 +40,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+      <Services />
     </Helmet>
   );
 };
