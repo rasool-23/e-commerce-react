@@ -24,6 +24,15 @@
   box-sizing: border-box;
 }
 
+.container {
+  margin: 0 auto;
+  max-width: 1140px;
+}
+
+.active {
+  font-weight: 700;
+}
+
 body {
   font-family: "Montserrat", sans-serif;
 }
@@ -56,4 +65,12 @@ ul {
 a {
   text-decoration: none;
   color: unset;
+}
+
+img {
+  width: 100%;
+}
+
+section {
+  padding: 60px 0;
 }
