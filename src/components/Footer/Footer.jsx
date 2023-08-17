@@ -1,4 +1,3 @@
-import logo from "../../assets/images/eco-logo.png";
 import { Link } from "react-router-dom";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { AiOutlinePhone } from "react-icons/ai";

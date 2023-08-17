@@ -4,8 +4,23 @@ import userIcon from "../../assets/images/user-icon.png";
 import { BsBag, BsHeart } from "react-icons/bs";
 import { AiOutlineMenu } from "react-icons/ai";
 import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 
 const Header = () => {
+  const headerRef = useRef(null);
+
+  const stickyHeader = () => {
+    window.addEventListener("scroll", () => {
+      if (
+        document.body.scrollTop > 80 ||
+        document.documentElement.scrollTop > 80
+      ) {
+        headerRef.current.classList.add("sticky-header");
+      } else {
+        headerRef.current.classList.remove("sticky-header");
+      }
+    });
+  };
   const navLinks = [
     {
       path: "/home",
@@ -20,8 +35,16 @@ const Header = () => {
       display: "Cart",
     },
   ];
+
+  useEffect(() => {
+    stickyHeader();
+
+    return () => window.removeEventListener("scroll", stickyHeader);
+  });
   return (
-    <header className="w-full h-[70px] pt-4">
+    <header
+      className="w-full h-[70px] flex justify-center items-center"
+      ref={headerRef}>
       <div className="container">
         <div className="nav-wrapper flex items-center justify-between text-[#0a1d37]">
           <div className="flex items-center gap-2">
