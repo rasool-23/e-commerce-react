@@ -1,9 +1,25 @@
 import { motion } from "framer-motion";
 import { IoAddOutline } from "react-icons/io5";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { cartActions } from "../../redux/slices/cartSlice";
+import { toast } from "react-toastify";
 
 const ProductCard = (item) => {
+  const dispatch = useDispatch();
   // console.log(item.item);
+
+  const addToCart = () => {
+    dispatch(
+      cartActions.addItem({
+        id: item.id,
+        productName: item.productName,
+        price: item.price,
+        image: item.imgUrl,
+      })
+    );
+    toast.success("Product added to the cart");
+  };
 
   return (
     <div className="proit cursor-pointer mb-2">
@@ -27,6 +43,7 @@ const ProductCard = (item) => {
           ${item.item.price}
         </span>
         <motion.div
+          onClick={addToCart}
           whileHover={{ scale: 1.2 }}
           className="font-[1.2rem] p-[5px] bg-[#0a1d37] rounded-full">
           <IoAddOutline color="white" />

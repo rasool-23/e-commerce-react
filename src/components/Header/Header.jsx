@@ -5,12 +5,14 @@ import { BsBag, BsHeart } from "react-icons/bs";
 import { AiOutlineMenu } from "react-icons/ai";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const headerRef = useRef(null);
   const menuRef = useRef(null);
   const [menuToggle, setMenuToggle] = useState(false);
   // const menuToggle = () => menuRef.current.classList.toggle("active-menu");
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
 
   const stickyHeader = () => {
     window.addEventListener("scroll", () => {
@@ -87,7 +89,7 @@ const Header = () => {
             <div className="relative">
               <BsBag size={20} color={"#0a1d37"} className="cursore-pointer" />
               <span className="badge flex justify-center items-center absolute top-[-25%] right-[-30%] bg-[#0a1d37] rounded-full text-[.7rem] font-semibold z-10 text-white w-[16px] h-[16px]">
-                1
+                {totalQuantity}
               </span>
             </div>
 
