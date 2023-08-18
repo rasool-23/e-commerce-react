@@ -60,18 +60,18 @@ const Shop = () => {
   };
   return (
     <Helmet title="Shop">
-      <CommonSection title="Product" />
+      <CommonSection title="Products" />
 
       <section>
         <div className="container">
-          <div className="row grid grid-cols-2">
-            <div className="grid grid-cols-2 gap-2">
-              <div>
-                <div className="filter__widget ">
+          <div className="row grid md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-4 md:gap-4 items-center">
+              <div className="items-center">
+                <div className="filter__widget">
                   <select
-                    className="py-2 px-[10px] border border-[#0a1d37] rounded-md cursor-pointer focus:outline-none"
+                    className="w-full sm:w-[90%] md:w-full py-2 px-[20px] md:px-[10px] border border-[#0a1d37] rounded-md cursor-pointer focus:outline-none text-[.9rem]"
                     onChange={handleFilter}>
-                    <option value="" className="text-[.9rem]">
+                    <option value="" className="text-[1rem]">
                       Filter By Category
                     </option>
                     <option value="sofa" className="text-[.9rem]">
@@ -92,10 +92,10 @@ const Shop = () => {
                   </select>
                 </div>
               </div>
-              <div>
+              <div className="sm:text-end md:block md:text-end">
                 <div className="filter__widget">
-                  <select className="py-2 px-[10px] border border-[#0a1d37] rounded-md cursor-pointer focus:outline-none">
-                    <option value="" className="text-[.9rem]">
+                  <select className="w-full sm:w-[90%] md:w-full  py-2 px-[10px] border border-[#0a1d37] rounded-md cursor-pointer focus:outline-none">
+                    <option value="" className="text-[1rem]">
                       Sort By
                     </option>
                     <option value="ascending" className="text-[.9rem]">
@@ -108,12 +108,12 @@ const Shop = () => {
                 </div>
               </div>
             </div>
-            <div>
-              <div className="search-box flex items-center justify-between gap-2 w-full border border-[#0a1d37] rounded-md pr-3 pl-1 cursor-pointer">
+            <div className="">
+              <div className="search-box mt-4 md:mt-0 flex items-center justify-between gap-2 w-full border border-[#0a1d37] rounded-md pr-3 pl-1 cursor-pointer">
                 <input
                   type="text"
                   placeholder="Search..."
-                  className="w-full border-none outline-none py-2 px-[10px] "
+                  className="w-full border-none outline-none py-2 px-[10px] text-[.9rem]"
                   onChange={handleSearch}
                 />
                 <div>
