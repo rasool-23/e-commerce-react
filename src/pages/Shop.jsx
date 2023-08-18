@@ -48,6 +48,16 @@ const Shop = () => {
       setProductsData(filteredProducts);
     }
   };
+
+  const handleSearch = (e) => {
+    const searchTerm = e.target.value;
+
+    const searchedProducts = products.filter((item) =>
+      item.productName.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    setProductsData(searchedProducts);
+  };
   return (
     <Helmet title="Shop">
       <CommonSection title="Product" />
@@ -104,6 +114,7 @@ const Shop = () => {
                   type="text"
                   placeholder="Search..."
                   className="w-full border-none outline-none py-2 px-[10px] "
+                  onChange={handleSearch}
                 />
                 <div>
                   <BiSearch color="#0a1d37" />
@@ -114,12 +125,12 @@ const Shop = () => {
         </div>
       </section>
 
-      <section>
+      <section className="pt-0">
         <div className="container">
           <div className="row">
             <div>
               {productsData.length === 0 ? (
-                <h1>No products are found!</h1>
+                <h1 className="text-center text-xl">No products are found!</h1>
               ) : (
                 <ProductList data={productsData} />
               )}
