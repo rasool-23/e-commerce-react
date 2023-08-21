@@ -6,9 +6,10 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-// import useAuth from "../../hooks/useAuth";
+import { useAuth } from "../../hooks/useAuth";
 import { signOut } from "firebase/auth";
 import { toast } from "react-toastify";
+import { auth } from "../../firebase.config";
 const Header = () => {
   const navigate = useNavigate();
   const headerRef = useRef(null);
@@ -16,7 +17,10 @@ const Header = () => {
   const [menuToggle, setMenuToggle] = useState(false);
   // const menuToggle = () => menuRef.current.classList.toggle("active-menu");
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
-  // const {currentUser} = useAuth()
+  // const { currentUser } = useAuth();
+  const currentUser = useAuth();
+  console.log(currentUser);
+
   const [dropdown, setDropdown] = useState(false);
 
   const stickyHeader = () => {
@@ -61,7 +65,7 @@ const Header = () => {
     stickyHeader();
 
     // return () => window.removeEventListener("scroll", stickyHeader);
-  });
+  }, []);
 
   return (
     <header
@@ -113,7 +117,7 @@ const Header = () => {
             <div className="relative z-10">
               <motion.img
                 whileTap={{ scale: 1.2 }}
-                // src={currentUser ? currentUser.photo : userIcon}
+                src={currentUser ? currentUser.photoURL : userIcon}
                 alt="user-icon"
                 className="w-6 h-6 md:w-[30px] md:h-[30px] cursor-pointer"
                 onClick={() => setDropdown((prev) => !prev)}
@@ -123,15 +127,15 @@ const Header = () => {
                left-0 w-[150px] z-20 p-4 items-center flex-col bg-[#fdefe6] leading-7 ${
                  dropdown ? "flex" : "hidden"
                } cursor-pointer`}>
-                {/* {currentUser ? (
+                {currentUser ? (
                   <span onClick={logout}>Logout</span>
                 ) : (
                   <div className="flex items-center justify-center flex-col">
-                  <Link to="/login">Login</Link>
+                    <Link to="/login">Login</Link>
                     <Link to="/signup">Signup</Link>
-                  <Link to="/dashboard">Dashboard</Link>
+                    <Link to="/dashboard">Dashboard</Link>
                   </div>
-                )} */}
+                )}
               </div>
             </div>
             <div

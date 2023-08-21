@@ -52,16 +52,12 @@ const Login = () => {
                     placeholder="Enter your email"
                     name="email"
                     className="border border-[#0a1d37] w-full py-2 px-3 rounded-md mt-4"
-                    // value={email}
-                    // onChange={(e) => setEmail(e.target.value)}
                   />
                   <input
                     type="password"
                     placeholder="Enter your password"
                     name="password"
                     className="border border-[#0a1d37] w-full py-2 px-3 rounded-md mt-4"
-                    // value={password}
-                    // onChange={(e) => setPassword(e.target.value)}
                   />
                   <motion.button
                     type="submit"
