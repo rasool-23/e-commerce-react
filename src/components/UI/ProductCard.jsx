@@ -7,15 +7,15 @@ import { toast } from "react-toastify";
 
 const ProductCard = (item) => {
   const dispatch = useDispatch();
-  // console.log(item.item);
+  // console.log(item.item);/
 
   const addToCart = () => {
     dispatch(
       cartActions.addItem({
-        id: item.id,
-        productName: item.productName,
-        price: item.price,
-        image: item.imgUrl,
+        id: item.item.id,
+        productName: item.item.productName,
+        price: item.item.price,
+        image: item.item.imgUrl,
       })
     );
     toast.success("Product added to the cart");

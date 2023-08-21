@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/eco-logo.png";
 import userIcon from "../../assets/images/user-icon.png";
 import { BsBag, BsHeart } from "react-icons/bs";
@@ -6,13 +6,18 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-
+// import useAuth from "../../hooks/useAuth";
+import { signOut } from "firebase/auth";
+import { toast } from "react-toastify";
 const Header = () => {
+  const navigate = useNavigate();
   const headerRef = useRef(null);
   const menuRef = useRef(null);
   const [menuToggle, setMenuToggle] = useState(false);
   // const menuToggle = () => menuRef.current.classList.toggle("active-menu");
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
+  // const {currentUser} = useAuth()
+  const [dropdown, setDropdown] = useState(false);
 
   const stickyHeader = () => {
     window.addEventListener("scroll", () => {
@@ -40,6 +45,17 @@ const Header = () => {
       display: "Cart",
     },
   ];
+
+  const logout = () => {
+    signOut(auth)
+      .then(() => {
+        toast.success("Logged out");
+        navigate("/home");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
 
   useEffect(() => {
     stickyHeader();
@@ -76,7 +92,7 @@ const Header = () => {
             </ul>
           </nav>
           <div className="flex items-center gap-[1.2rem] ">
-            <div className="relative">
+            <div className="relative cursor-pointer">
               <BsHeart
                 size={20}
                 color={"#0a1d37"}
@@ -86,19 +102,38 @@ const Header = () => {
                 1
               </span>
             </div>
-            <div className="relative">
+            <div
+              className="relative cursor-pointer"
+              onClick={() => navigate("/cart")}>
               <BsBag size={20} color={"#0a1d37"} className="cursore-pointer" />
               <span className="badge flex justify-center items-center absolute top-[-25%] right-[-30%] bg-[#0a1d37] rounded-full text-[.7rem] font-semibold z-10 text-white w-[16px] h-[16px]">
                 {totalQuantity}
               </span>
             </div>
-
-            <motion.img
-              whileTap={{ scale: 1.2 }}
-              src={userIcon}
-              alt="user-icon"
-              className="w-6 h-6 md:w-[30px] md:h-[30px] cursor-pointer"
-            />
+            <div className="relative z-10">
+              <motion.img
+                whileTap={{ scale: 1.2 }}
+                // src={currentUser ? currentUser.photo : userIcon}
+                alt="user-icon"
+                className="w-6 h-6 md:w-[30px] md:h-[30px] cursor-pointer"
+                onClick={() => setDropdown((prev) => !prev)}
+              />
+              <div
+                className={`profile-action absolute top-[98%]
+               left-0 w-[150px] z-20 p-4 items-center flex-col bg-[#fdefe6] leading-7 ${
+                 dropdown ? "flex" : "hidden"
+               } cursor-pointer`}>
+                {/* {currentUser ? (
+                  <span onClick={logout}>Logout</span>
+                ) : (
+                  <div className="flex items-center justify-center flex-col">
+                  <Link to="/login">Login</Link>
+                    <Link to="/signup">Signup</Link>
+                  <Link to="/dashboard">Dashboard</Link>
+                  </div>
+                )} */}
+              </div>
+            </div>
             <div
               className="md:hidden "
               onClick={() => setMenuToggle((prev) => !prev)}>
