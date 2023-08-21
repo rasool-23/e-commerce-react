@@ -14,9 +14,7 @@ import { toast } from "react-toastify";
 const Register = () => {
   const navigate = useNavigate();
   const formRef = useRef();
-
   const [loading, setLoading] = useState(false);
-  // console.log(formRef?.current[0].value);
 
   const signupUser = async (e) => {
     e.preventDefault();
@@ -65,8 +63,6 @@ const Register = () => {
       toast.error("Something went wrong");
       console.log(error);
     }
-    // console.log(formRef.current[0].value);
-    // console.log(formRef.current[1].value);
   };
 
   return (

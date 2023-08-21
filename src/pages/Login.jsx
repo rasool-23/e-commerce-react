@@ -11,11 +11,11 @@ const Login = () => {
   const navigate = useNavigate();
   const formRef = useRef();
   const [loading, setLoading] = useState(false);
-  const email = formRef.current[0].value;
-  const password = formRef.current[1].value;
 
   const signIn = async (e) => {
     e.preventDefault();
+    const email = formRef.current[0].value;
+    const password = formRef.current[1].value;
     setLoading(true);
     try {
       const userCredential = await signInWithEmailAndPassword(
