@@ -17,9 +17,7 @@ const Header = () => {
   const [menuToggle, setMenuToggle] = useState(false);
   // const menuToggle = () => menuRef.current.classList.toggle("active-menu");
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
-  // const { currentUser } = useAuth();
   const currentUser = useAuth();
-  console.log(currentUser);
 
   const [dropdown, setDropdown] = useState(false);
 
@@ -119,7 +117,7 @@ const Header = () => {
                 whileTap={{ scale: 1.2 }}
                 src={currentUser ? currentUser.photoURL : userIcon}
                 alt="user-icon"
-                className="w-6 h-6 md:w-[30px] md:h-[30px] cursor-pointer"
+                className="w-6 h-6 md:w-[30px] md:h-[30px] rounded-full cursor-pointer"
                 onClick={() => setDropdown((prev) => !prev)}
               />
               <div
