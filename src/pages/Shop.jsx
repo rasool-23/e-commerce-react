@@ -1,48 +1,67 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
 import { BiSearch } from "react-icons/bi";
-import products from "../assets/data/products";
+// import products from "../assets/data/products";
 import { ProductList } from "../components/UI/ProductList";
+import { useGetData } from "../hooks/useGetData";
 
 const Shop = () => {
+  const { data: products, loading: loading } = useGetData("products");
+  const initialState = products;
+
   const [productsData, setProductsData] = useState(products);
+
   const handleFilter = (e) => {
     const selectValue = e.target.value;
-    if (selectValue === "sofa") {
+    if (selectValue === "outdoor") {
       const filteredProducts = products.filter(
-        (item) => item.category === "sofa"
+        (item) => item.category === "outdoor"
       );
 
       setProductsData(filteredProducts);
     }
-    if (selectValue === "mobile") {
+    if (selectValue === "lighting") {
       const filteredProducts = products.filter(
-        (item) => item.category === "mobile"
-      );
-
-      setProductsData(filteredProducts);
-    }
-
-    if (selectValue === "chair") {
-      const filteredProducts = products.filter(
-        (item) => item.category === "chair"
+        (item) => item.category === "lighting"
       );
 
       setProductsData(filteredProducts);
     }
 
-    if (selectValue === "watch") {
+    if (selectValue === "bedding") {
       const filteredProducts = products.filter(
-        (item) => item.category === "watch"
+        (item) => item.category === "bedding"
       );
 
       setProductsData(filteredProducts);
     }
 
-    if (selectValue === "wireless") {
+    if (selectValue === "bath") {
       const filteredProducts = products.filter(
-        (item) => item.category === "wireless"
+        (item) => item.category === "bath"
+      );
+
+      setProductsData(filteredProducts);
+    }
+
+    if (selectValue === "kitchen") {
+      const filteredProducts = products.filter(
+        (item) => item.category === "kitchen"
+      );
+
+      setProductsData(filteredProducts);
+    }
+    if (selectValue === "storage") {
+      const filteredProducts = products.filter(
+        (item) => item.category === "storage"
+      );
+
+      setProductsData(filteredProducts);
+    }
+    if (selectValue === "baby-kids") {
+      const filteredProducts = products.filter(
+        (item) => item.category === "baby-kids"
       );
 
       setProductsData(filteredProducts);
@@ -58,6 +77,7 @@ const Shop = () => {
 
     setProductsData(searchedProducts);
   };
+
   return (
     <Helmet title="Shop">
       <CommonSection title="Products" />
@@ -128,13 +148,19 @@ const Shop = () => {
       <section className="pt-0">
         <div className="container">
           <div className="row">
-            <div>
-              {productsData.length === 0 ? (
-                <h1 className="text-center text-xl">No products are found!</h1>
-              ) : (
-                <ProductList data={productsData} />
-              )}
-            </div>
+            {loading ? (
+              <h5 className="text-center">Loading...</h5>
+            ) : (
+              <div>
+                {products.length === 0 ? (
+                  <h1 className="text-center text-xl">
+                    No products are found!
+                  </h1>
+                ) : (
+                  <ProductList data={products} />
+                )}
+              </div>
+            )}
           </div>
         </div>
       </section>

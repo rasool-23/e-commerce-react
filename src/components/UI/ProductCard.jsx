@@ -33,10 +33,12 @@ const ProductCard = (item) => {
         </Link>
       </div>
       <div className="p-2 hover:text-inherit">
-        <h3 className="text-[1.1rem] text-[#0a1d37] mt-4">
+        <h3 className="text-[1.1rem] text-[#0a1d37] mt-4 h-[74px] max-h-[75px] underline">
           <Link to={`/shop/${item.item.id}`}>{item.item.productName}</Link>
         </h3>
-        <span className="text-center text-[.9rem]">{item.item.category}</span>
+        <span className="text-center text-[.9rem] font-bold">
+          {item.item.category}
+        </span>
       </div>
       <div className="flex items-center justify-between p-2">
         <span className="text-[1.3rem] font-medium text-[#0a1d37]">

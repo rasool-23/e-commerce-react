@@ -1,5 +1,4 @@
-import { Link, NavLink, useParams } from "react-router-dom";
-import products from "../assets/data/products";
+import { Link, useParams } from "react-router-dom";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
 import { AiFillStar } from "react-icons/ai";
@@ -12,22 +11,45 @@ import { useDispatch } from "react-redux";
 import { cartActions } from "../redux/slices/cartSlice";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
+import { db } from "../firebase.config";
+import { doc, getDoc } from "firebase/firestore";
+import { useGetData } from "../hooks/useGetData";
 
 const ProductDetails = () => {
+  const [product, setProduct] = useState({});
+  // const location = useLocation();
   const dispatch = useDispatch();
   const [tab, setTab] = useState("desc");
   const { id } = useParams();
   const [rating, setRating] = useState(null);
+
+  const { data: products } = useGetData("products");
+  // console.log(products);
+  // const { data: users, loading: loading } = useGetData("users");
+
   const reviewUser = useRef("");
   const reviewMsg = useRef("");
 
-  const product = products.find((item) => item.id === id);
+  const docRef = doc(db, "products", id);
+
+  useEffect(() => {
+    const getProduct = async () => {
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        setProduct(docSnap.data());
+      } else {
+        toast.warning("No product");
+      }
+    };
+    getProduct();
+  }, [id]);
   const {
     imgUrl,
     productName,
     price,
-    avgRating,
-    reviews,
+    // avgRating,
+    // reviews,
     description,
     category,
     shortDesc,
@@ -41,11 +63,11 @@ const ProductDetails = () => {
     const reviewUserName = reviewUser.current.value;
     const reviewUserMsg = reviewMsg.current.value;
 
-    const reviewObj = {
-      author: reviewUserName,
-      text: reviewUserMsg,
-      rating,
-    };
+    // const reviewObj = {
+    //   author: reviewUserName,
+    //   text: reviewUserMsg,
+    //   rating,
+    // };
 
     toast.success("Review submitted successfully");
     console.log(reviewUserName, reviewUserMsg, rating);
@@ -65,13 +87,14 @@ const ProductDetails = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [product]);
+  }, [product, id]);
+
   return (
     <Helmet title={productName}>
       <CommonSection title={productName} className="py-[70px] px-0" />
-      <section className="pt-0">
+      <section className="">
         <div className="container">
-          <div className="row grid grid-cols-1 sm:grid-cols-2">
+          <div className="row grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <img src={imgUrl} alt={productName} />
             </div>
@@ -88,8 +111,8 @@ const ProductDetails = () => {
                     {/* <AiFillStar color="" /> */}
                   </div>
                   <p>
-                    <span className="">{avgRating} </span>
-                    retings.
+                    {/* <span className="">{avgRating} </span> */}
+                    {/* retings. */}
                   </p>
                 </div>
                 <div className="flex items-center gap-4 mt-3">
@@ -125,7 +148,7 @@ const ProductDetails = () => {
                 <Link
                   onClick={() => setTab("rev")}
                   className={`${tab === "rev" ? "active" : ""}`}>
-                  Reviews ({reviews.length})
+                  Reviews
                 </Link>
               </div>
               {tab === "desc" ? (
@@ -135,7 +158,7 @@ const ProductDetails = () => {
               ) : (
                 <div className="review mt-5">
                   <div className="revieww">
-                    <ul>
+                    {/* <ul>
                       {reviews.map((item, i) => (
                         <li key={i} className="mb-4">
                           <h6>John Doe</h6>
@@ -145,7 +168,7 @@ const ProductDetails = () => {
                           <p className="mt-2">{item.text}</p>
                         </li>
                       ))}
-                    </ul>
+                    </ul> */}
                     <div className="reviewform w-[70%] m-auto mt-[50px]">
                       <h4 className="text-semibold mb-[30px] text-[1.2rem]">
                         Leave your experience

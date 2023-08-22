@@ -13,14 +13,13 @@ const Footer = () => {
             <div className="flex items-center gap-2">
               <Link to="/home">
                 <h1 className="text-[1.2rem] font-bold text-white">
-                  Multimart
+                  AllModern
                 </h1>
               </Link>
             </div>
             <p className="mt-4 leading-[30px] text-[#ffffff75]">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-              voluptatibus sequi fuga nostrum praesentium vel sed ex totam hic
-              qui.
+              Defined by the Bauhause greats and cemented by the Good Design
+              era, modern remains relevant more than 100 years later.
             </p>
           </div>
           <div className="mb-4">

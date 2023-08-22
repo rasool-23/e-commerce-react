@@ -1,6 +1,7 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/eco-logo.png";
 import userIcon from "../../assets/images/user-icon.png";
+import { SiHomebridge } from "react-icons/si";
 import { BsBag, BsHeart } from "react-icons/bs";
 import { AiOutlineMenu } from "react-icons/ai";
 import { motion } from "framer-motion";
@@ -73,9 +74,10 @@ const Header = () => {
         <div className="nav-wrapper flex items-center justify-between text-[#0a1d37]">
           <div className="flex items-center">
             <Link to="/home" className="flex items-center  gap-2">
-              <img src={logo} alt="logo" className="w-4 h-4 md:w-6 md:h-6" />
+              {/* <img src={logo} alt="logo" className="w-4 h-4 md:w-6 md:h-6" /> */}
+              <SiHomebridge size={35} />
               <h1 className="text-[1rem] md:text-[1.2rem] font-bold">
-                Multimart
+                AllModern
               </h1>
             </Link>
           </div>
@@ -94,7 +96,7 @@ const Header = () => {
             </ul>
           </nav>
           <div className="flex items-center gap-[1.2rem] ">
-            <div className="relative cursor-pointer">
+            {/* <div className="relative cursor-pointer">
               <BsHeart
                 size={20}
                 color={"#0a1d37"}
@@ -103,7 +105,7 @@ const Header = () => {
               <span className="badge flex justify-center items-center absolute top-[-25%] right-[-30%] bg-[#0a1d37] rounded-full text-[.7rem] font-semibold z-10 text-white w-[16px] h-[16px]">
                 1
               </span>
-            </div>
+            </div> */}
             <div
               className="relative cursor-pointer"
               onClick={() => navigate("/cart")}>
@@ -122,11 +124,14 @@ const Header = () => {
               />
               <div
                 className={`profile-action absolute top-[98%]
-               left-0 w-[150px] z-20 p-4 items-center flex-col bg-[#fdefe6] leading-7 ${
+               left-[-300%] 2xl:left-0 w-[150px] z-20 p-4 items-center flex-col bg-[#fdefe6] leading-7 ${
                  dropdown ? "flex" : "hidden"
                } cursor-pointer`}>
                 {currentUser ? (
-                  <span onClick={logout}>Logout</span>
+                  <div className="flex flex-col">
+                    <Link to="/dashboard">Dashboard</Link>
+                    <Link onClick={logout}>Logout</Link>
+                  </div>
                 ) : (
                   <div className="flex items-center justify-center flex-col">
                     <Link to="/login">Login</Link>

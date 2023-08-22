@@ -11,6 +11,7 @@ const ProductDetails = lazy(() => import("../pages/ProductDetails"));
 const AllProducts = lazy(() => import("../admin/AllProducts"));
 const Dashboard = lazy(() => import("../admin/Dashboard"));
 const AddProducts = lazy(() => import("../admin/AddProducts"));
+const Users = lazy(() => import("../admin/Users"));
 const NotFound = lazy(() => import("../pages/NotFound"));
 
 const Routers = () => {
@@ -30,6 +31,7 @@ const Routers = () => {
           <Route path="checkout" element={<Checkout />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="dashboard/all-products" element={<AllProducts />} />
+          <Route path="dashboard/users" element={<Users />} />
           <Route path="dashboard/add-products" element={<AddProducts />} />
         </Route>
       </Routes>

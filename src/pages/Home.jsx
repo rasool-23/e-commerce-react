@@ -1,62 +1,73 @@
 import { useEffect, useState } from "react";
 import Helmet from "../components/Helmet/Helmet";
-import heroImg from "../assets/images/hero-img.png";
+import heroImg from "../assets/images/heroimg.jpg";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Services from "../services/Services";
 import { ProductList } from "../components/UI/ProductList";
-import products from "../assets/data/products";
 import counterImg from "../assets/images/counter-timer-img.png";
 import Clock from "../components/UI/Clock";
+import { useGetData } from "../hooks/useGetData";
 
 const Home = () => {
-  const [trendingProducts, setTrendingProducts] = useState([]);
-  const [bestSalesProducts, setBestSalesProducts] = useState([]);
-  const [mobileProducts, setMobileProducts] = useState([]);
-  const [wirelessProducts, setWirelessProducts] = useState([]);
-  const [popularProducts, setPopularProducts] = useState([]);
+  const { data: products, loading: loading } = useGetData("products");
+
+  const [beddingProducts, setBeddingProducts] = useState([]);
+  const [bathProducts, setBathProducts] = useState([]);
+  const [outdoorProducts, setoutdoorProducts] = useState([]);
+  const [lightingProducts, setLightingProducts] = useState([]);
+  const [kitchenProducts, setKitchenProducts] = useState([]);
+  const [babyProducts, setBabyProducts] = useState([]);
 
   const year = new Date().getFullYear();
 
   useEffect(() => {
-    const filteredTrendingProducts = products.filter(
-      (item) => item.category === "chair"
+    const filteredBeddingProducts = products.filter(
+      (item) => item.category === "bedding"
     );
-    const filteredBestSalesProducts = products.filter(
-      (item) => item.category === "sofa"
+    const filteredBathProducts = products.filter(
+      (item) => item.category === "bath"
     );
-    const filteredMobileProducts = products.filter(
-      (item) => item.category === "mobile"
+    const filteredOutdoorProducts = products.filter(
+      (item) => item.category === "outdoor"
     );
-    const filteredWirelessProducts = products.filter(
-      (item) => item.category === "wireless"
+    const filteredLightingProducts = products.filter(
+      (item) => item.category === "lighting"
     );
-    const filteredPopularProducts = products.filter(
-      (item) => item.category === "watch"
+    const filteredKitchenProducts = products.filter(
+      (item) => item.category === "kitchen"
     );
-    setTrendingProducts(filteredTrendingProducts);
-    setBestSalesProducts(filteredBestSalesProducts);
-    setMobileProducts(filteredMobileProducts);
-    setWirelessProducts(filteredWirelessProducts);
-    setPopularProducts(filteredPopularProducts);
-  }, []);
+    const filteredBabyProducts = products.filter(
+      (item) => item.category === "baby-kids"
+    );
+    setBeddingProducts(filteredBeddingProducts);
+    setBathProducts(filteredBathProducts);
+    setoutdoorProducts(filteredOutdoorProducts);
+    setLightingProducts(filteredLightingProducts);
+    setKitchenProducts(filteredKitchenProducts);
+    setBabyProducts(filteredBabyProducts);
+  }, [products]);
 
   return (
     <Helmet title={"Home"}>
-      <section className="hero bg-[#d6e5fb]">
+      <section className="hero bg-[#ECE8E3]">
         <div className="container">
-          <div className="grid grid-cols-1 sm:grid-cols-2">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <div className="col">
               <div className="pt-0 sm:pt-[45px]">
                 <p className="subtitle">Treding product in {year}</p>
-                <h2 className="text-[#0a1d37] text-[1.6rem] sm:text-[2rem] md:text-[2.5rem] font-semibold my-5 mx-0">
-                  Make Your Interior More Minimlistic & Modern
-                </h2>
-                <p className="text-[#0a1d37] leading-[28px] text-[.9rem] md:text-[1.1]">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Natus, enim quis assumenda omnis quasi voluptates cum sit
-                  fugiat architecto deleniti mollitia facere error labore
-                  distinctio recusandae molestiae fugit eaque ullam?
+                <div className="text-[#0a1d37] text-[1.6rem] sm:text-[2rem] md:text-[2.5rem] font-semibold mx-0">
+                  {/* Make Your Interior More Minimlistic & Modern */}
+                  <h4 className="sm:text-[2rem] lg:text-[4rem]">
+                    Hi, we&apos;re AllModern.{" "}
+                  </h4>
+                  <span className="sm:text-[2rem] lg:text-[3rem]">
+                    Escape With Us
+                  </span>{" "}
+                </div>
+                <p className="text-[#0a1d37] leading-[28px] text-[1.2rem] md:text-[1.1]">
+                  We believe good design should be the standard for all, not a
+                  luxury for the few
                 </p>
                 <motion.button
                   whileTap={{ scale: 1.2 }}
@@ -68,23 +79,31 @@ const Home = () => {
               </div>
             </div>
             <div className="col">
-              <div className="herimg">
-                <img src={heroImg} alt="Hero img" />
-              </div>
+              <motion.div
+                className="flex items-center mt-8"
+                whileHover={{ scale: 1.05 }}>
+                <img src={heroImg} alt="Hero image" />
+              </motion.div>
             </div>
           </div>
         </div>
       </section>
+
       <Services />
+
       <section className="tredingprod">
         <div className="container">
           <div className="row">
             <div className="text-center">
-              <h2 className="sect it text-[1.4rem] md:text-[2rem] font-semibold">
+              <h2 className="pb-4 text-[1.4rem] md:text-[2rem] font-semibold">
                 Trending Products
               </h2>
             </div>
-            <ProductList data={trendingProducts} />
+            {loading ? (
+              <h5>Loading...</h5>
+            ) : (
+              <ProductList data={beddingProducts} />
+            )}
           </div>
         </div>
       </section>
@@ -93,11 +112,15 @@ const Home = () => {
         <div className="container">
           <div className="row">
             <div className="text-center">
-              <h2 className="sect it text-[# ] font-semibold text-[1.4rem]">
-                Best Salec
+              <h2 className="pb-4 text-[1.4rem] md:text-[2rem] font-semibold">
+                Bath
               </h2>
             </div>
-            <ProductList data={bestSalesProducts} />
+            {loading ? (
+              <h5>Loading...</h5>
+            ) : (
+              <ProductList data={bathProducts} />
+            )}
           </div>
         </div>
       </section>
@@ -106,7 +129,7 @@ const Home = () => {
         <div className="container">
           <div className="sm:grid sm:grid-cols-2">
             <div className="">
-              <div className="text-center">
+              <div className="text-center sm:text-start">
                 <h4 className="text-white text-base md:text-xl mb-3 ">
                   Limited Offers
                 </h4>
@@ -133,19 +156,42 @@ const Home = () => {
           </div>
         </div>
       </section>
+
       <section>
         <div className="container">
           <div className="row">
             <div className="text-center mb-5">
               <h2 className="sect it text-[# ] font-semibold text-[1.4rem]">
-                New Arrivals
+                Outdoor
               </h2>
             </div>
-            <ProductList data={mobileProducts} />
-            {/* <ProductList data={wirelessProducts} /> */}
+            {loading ? (
+              <h5>Loading...</h5>
+            ) : (
+              <ProductList data={outdoorProducts} />
+            )}
+            <ProductList data={lightingProducts} />
           </div>
         </div>
       </section>
+
+      <section>
+        <div className="container">
+          <div className="row">
+            <div className="text-center mb-5">
+              <h2 className="sect it text-[# ] font-semibold text-[1.4rem]">
+                Lighting
+              </h2>
+            </div>
+            {loading ? (
+              <h5>Loading...</h5>
+            ) : (
+              <ProductList data={lightingProducts} />
+            )}
+          </div>
+        </div>
+      </section>
+
       <section>
         <div className="container">
           <div className="row">
@@ -154,8 +200,29 @@ const Home = () => {
                 Popular in Category
               </h2>
             </div>
-            <ProductList data={popularProducts} />
+            {loading ? (
+              <h5>Loading...</h5>
+            ) : (
+              <ProductList data={kitchenProducts} />
+            )}
             {/* <ProductList data={wirelessProducts} /> */}
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="container">
+          <div className="row">
+            <div className="text-center mb-5">
+              <h2 className="sect it text-[# ] font-semibold text-[1.4rem]">
+                Baby-Kids
+              </h2>
+            </div>
+            {loading ? (
+              <h5>Loading...</h5>
+            ) : (
+              <ProductList data={babyProducts} />
+            )}
           </div>
         </div>
       </section>
